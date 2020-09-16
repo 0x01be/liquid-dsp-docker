@@ -1,17 +1,11 @@
+FROM 0x01/liquid-dsp:build as build
+
 FROM alpine
 
-RUN apk add --no-cache --virtual liquid-dsp-build-dependencies \
-    git \
-    build-base \
-    autoconf \
-    automake \
-    fftw-dev
+RUN apk add --no-cache --virtual liquid-dsp-runtime-dependencies \
+    fftw
 
-RUN git clone --depth 1 https://github.com/jgaeddert/liquid-dsp /liquid-dsp
+COPY --from=build /opt/liquid-dsp/ /opt/liquid-dsp/
 
-WORKDIR /liquid-dsp
-
-RUN ./bootstrap.sh
-RUN ./configure --prefix=/opt/liquid-dsp
-RUN make install
+ENV LD_LIBRARY_PATH /usr/lib/:/opt/liquid-dsp/lib/
 
