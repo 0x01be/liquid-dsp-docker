@@ -1,4 +1,4 @@
-FROM alpine as builder
+FROM alpine
 
 RUN apk add --no-cache --virtual liquid-dsp-build-dependencies \
     git \
