@@ -1,4 +1,4 @@
-FROM 0x01/liquid-dsp:build as build
+FROM 0x01be/liquid-dsp:build as build
 
 FROM alpine
 
