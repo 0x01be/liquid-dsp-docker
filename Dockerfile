@@ -3,8 +3,9 @@ FROM alpine as builder
 RUN apk add --no-cache --virtual liquid-dsp-build-dependencies \
     git \
     build-base \
-    fftw-dev \
-    autoconf
+    autoconf \
+    automake \
+    fftw-dev
 
 RUN git clone --depth 1 https://github.com/jgaeddert/liquid-dsp /liquid-dsp
 
